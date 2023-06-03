@@ -52,10 +52,86 @@ footer {
     padding: 16px;
     border-radius: 8px;
     min-width: 300px;
-    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.display {
+    min-height: 100px;
+    border-radius: 6px;
+    padding: 8px 0;
+    background-color: #30475E;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: right;
+}
+
+.display p {
+    margin: 0;
+}
+
+.display-top,
+.display-main {
+    flex-grow: 1;
+    padding: 0 8px;
+    color: #DDDDDD;
+}
+
+.display-main {
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.backspace {
+    color: #DDDDDD;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+}
+
+.buttons {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .button-row {
+    flex-grow: 1;
     display: flex;
-    width: 100%;
+    justify-content: space-between;
+}
+
+.btn {
+    width: 25%;
+    padding: 0;
+    background-color: #30475E;
+    color: #DDDDDD;
+    border: solid #222831 2px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+sup {
+    font-size: 50%;
+}
+
+.clear {
+    color: rgb(164, 0, 0);
+}
+
+.operation {
+    color: rgb(0, 128, 0);
+}
+
+.equals {
+    background-color: rgb(0, 128, 0);
+    color: #DDDDDD;
 }
