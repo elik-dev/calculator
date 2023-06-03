@@ -55,13 +55,12 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 16px;
+    gap: 32px;
 }
 
 .display {
     min-height: 100px;
     border-radius: 6px;
-    padding: 8px 0;
     background-color: #30475E;
     display: flex;
     flex-direction: column;
@@ -85,6 +84,7 @@ footer {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    border-top: solid #222831 4px;
 }
 
 .backspace {
@@ -100,12 +100,14 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    gap: 4px;
 }
 
 .button-row {
     flex-grow: 1;
     display: flex;
     justify-content: space-between;
+    gap: 4px;
 }
 
 .btn {
@@ -113,10 +115,10 @@ footer {
     padding: 0;
     background-color: #30475E;
     color: #DDDDDD;
-    border: solid #222831 2px;
     font-size: 20px;
     font-weight: bold;
     border-radius: 6px;
+    border: none;
 }
 
 sup {
