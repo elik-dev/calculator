@@ -73,14 +73,6 @@ footer {
     font-weight: bold;
 }
 
-.backspace {
-    color: #DDDDDD;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: transparent;
-    border: none;
-}
-
 .buttons {
     min-height: 300px;
     display: flex;
@@ -105,6 +97,11 @@ footer {
     font-weight: bold;
     border-radius: 6px;
     border: none;
+}
+
+.backspace {
+    font-size: 16px;
+    background-color: transparent;
 }
 
 sup {
