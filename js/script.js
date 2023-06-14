@@ -124,22 +124,19 @@ function addPressFX(event) {
     event.target.classList.add("fx-active");
 }
 
-function removePressFX(event) {
-    event.target.classList.remove("fx-active")
-}
-
 function addHoverFX(event) {
     if (event.target.textContent === "⌫") return;
     if ("ontouchstart" in window) return;
     event.target.classList.add("fx-hover");
-
 }
 
-function removeHoverFX(event) {
+function removeFX(event) {
     event.target.classList.remove("fx-hover");
+    event.target.classList.remove("fx-active")
 }
 
 function pressButton(event) {
+    event.preventDefault();
     addPressFX(event);
     calculatorButtons[event.target.getAttribute("data-btn-type")](event);
 }
@@ -154,9 +151,11 @@ display.textContent = 0;
 const buttons = document.querySelectorAll(".calculator button");
 buttons.forEach(button => {
     button.addEventListener("mousedown", pressButton);
-    button.addEventListener("mouseup", removePressFX);
+    button.addEventListener("mouseup", removeFX);
     button.addEventListener("mouseover", addHoverFX);
-    button.addEventListener("mouseout", removeHoverFX);
+    button.addEventListener("mouseout", removeFX);
+    button.addEventListener("touchstart", pressButton);
+    button.addEventListener("touchend", removeFX);
 });
 
 // todo
