@@ -40,6 +40,10 @@ h1 {
     color: #DDDDDD;
 }
 
+a:hover {
+    color: #D65A31;
+}
+
 footer {
     text-align: center;
     border-top: solid #DDDDDD 1px;
@@ -97,6 +101,15 @@ footer {
     font-weight: bold;
     border-radius: 6px;
     border: none;
+    padding: 0 16px;
+}
+
+.fx:active {
+    background: hsl(210, 16%, 56%);
+}
+
+.fx:hover {
+    box-shadow: 0 0 2px 1px #4b7094
 }
 
 .backspace {
