@@ -6,6 +6,7 @@ const operations = {
         if (b === 0) {
             clearCalculator();
             alert("You can't divide by zero!");
+            removeFX();
             return 0;
         }
         return a / b;
@@ -50,6 +51,7 @@ const calculatorButtons = {
         }
         if (display.textContent === "NaN") {
             alert("Negative numbers doesn't have square roots!");
+            removeFX();
             clearCalculator();
         }
     },
@@ -120,19 +122,49 @@ const calculatorButtons = {
 };
 
 function addPressFX(event) {
-    if (event.target.textContent === "⌫") return;
+    if (event.target.textContent === "⌫") {
+        event.target.classList.add("backspace-active");
+        return;
+    }
     event.target.classList.add("fx-active");
 }
 
 function addHoverFX(event) {
-    if (event.target.textContent === "⌫") return;
     if ("ontouchstart" in window) return;
+    if (event.target.textContent === "⌫") {
+        event.target.classList.add("backspace-hover");
+        return;
+    };
     event.target.classList.add("fx-hover");
 }
 
-function removeFX(event) {
-    event.target.classList.remove("fx-hover");
-    event.target.classList.remove("fx-active")
+function removePressFX(event) { // wip
+    if (event.target.textContent === "⌫") {
+        event.target.classList.remove("backspace-active");
+        return;
+    }
+    if (!event) {
+        event.target.classList.remove("fx-active");
+    } else {
+        buttons.forEach(button => {
+            button.classList.remove("fx-active");
+        });
+    }
+}
+
+function removeHoverFX(event) {
+    if (event.target.textContent === "⌫") {
+        event.target.classList.remove("backspace-hover");
+        return;
+    }
+    if (!event) {
+        event.target.classList.remove("fx-hover");
+    } else {
+        buttons.forEach(button => {
+            button.classList.remove("fx-hover");
+        });
+    }
+
 }
 
 function pressButton(event) {
@@ -151,11 +183,11 @@ display.textContent = 0;
 const buttons = document.querySelectorAll(".calculator button");
 buttons.forEach(button => {
     button.addEventListener("mousedown", pressButton);
-    button.addEventListener("mouseup", removeFX);
+    button.addEventListener("mouseup", removePressFX);
     button.addEventListener("mouseover", addHoverFX);
-    button.addEventListener("mouseout", removeFX);
+    button.addEventListener("mouseout", removeHoverFX);
     button.addEventListener("touchstart", pressButton);
-    button.addEventListener("touchend", removeFX);
+    button.addEventListener("touchend", removePressFX);
 });
 
 // todo

@@ -117,6 +117,15 @@ footer {
     background-color: transparent;
 }
 
+.backspace-hover {
+    scale: 1.05;
+}
+
+.backspace-active {
+    text-shadow: rgb(0, 183, 255) 0px 0px 4px;
+}
+
+
 sup {
     font-size: 50%;
     pointer-events: none;
