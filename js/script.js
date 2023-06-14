@@ -120,22 +120,27 @@ const calculatorButtons = {
 };
 
 function addPressFX(event) {
-    event.target.style.backgroundColor = "hsl(210, 32%, 50%)";
+    if (event.target.textContent === "⌫") return;
+    event.target.classList.add("fx-active");
 }
 
 function removePressFX(event) {
-
+    event.target.classList.remove("fx-active")
 }
 
 function addHoverFX(event) {
+    if (event.target.textContent === "⌫") return;
+    if ("ontouchstart" in window) return;
+    event.target.classList.add("fx-hover");
 
 }
 
 function removeHoverFX(event) {
-
+    event.target.classList.remove("fx-hover");
 }
 
 function pressButton(event) {
+    addPressFX(event);
     calculatorButtons[event.target.getAttribute("data-btn-type")](event);
 }
 
@@ -155,6 +160,5 @@ buttons.forEach(button => {
 });
 
 // todo
-// - add animations
 // - limit display numbers max length
 // - add keyboard support

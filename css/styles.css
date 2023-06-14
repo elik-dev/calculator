@@ -104,11 +104,11 @@ footer {
     padding: 0 16px;
 }
 
-.fx:active {
+.fx-active {
     background: hsl(210, 16%, 56%);
 }
 
-.fx:hover {
+.fx-hover {
     box-shadow: 0 0 2px 1px #4b7094
 }
 
