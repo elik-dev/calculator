@@ -55,7 +55,7 @@ footer {
     margin: auto 0;
     padding: 16px;
     border-radius: 8px;
-    min-width: 300px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -69,12 +69,15 @@ footer {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    overflow: hidden;
 }
 
 .display-content {
     font-size: 20px;
     color: #DDDDDD;
     font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .buttons {

@@ -13,22 +13,8 @@ const operations = {
     },
 };
 
-function clearCalculator() {
-    firstNumber = null;
-    operator = null;
-    secondNumber = null;
-    result = null;
-    display.textContent = 0;
-}
-
-function shortenDecimals(num) {
-    return Math.round(num * 1000000) / 1000000;
-}
-
 const calculatorButtons = {
     "backspace": () => {
-        // display.textContent = display.textContent
-        //     .slice(0, display.textContent.length - 1);
         if (display.textContent.slice(-1) === operator) return;
         if ((display.textContent.length === 2
             && display.textContent.slice(0, 1) === "-")
@@ -121,6 +107,18 @@ const calculatorButtons = {
     },
 };
 
+function shortenDecimals(num) {
+    return Math.round(num * 1000000) / 1000000;
+}
+
+function clearCalculator() {
+    firstNumber = null;
+    operator = null;
+    secondNumber = null;
+    result = null;
+    display.textContent = 0;
+}
+
 function addPressFX(event) {
     if (event.target.textContent === "⌫") {
         event.target.classList.add("backspace-active");
@@ -138,20 +136,6 @@ function addHoverFX(event) {
     event.target.classList.add("fx-hover");
 }
 
-function removePressFX(event) { // wip
-    if (event.target.textContent === "⌫") {
-        event.target.classList.remove("backspace-active");
-        return;
-    }
-    if (!event) {
-        event.target.classList.remove("fx-active");
-    } else {
-        buttons.forEach(button => {
-            button.classList.remove("fx-active");
-        });
-    }
-}
-
 function removeHoverFX(event) {
     if (event.target.textContent === "⌫") {
         event.target.classList.remove("backspace-hover");
@@ -167,10 +151,128 @@ function removeHoverFX(event) {
 
 }
 
-function pressButton(event) {
+function clickButton(event) {
     event.preventDefault();
     addPressFX(event);
-    calculatorButtons[event.target.getAttribute("data-btn-type")](event);
+    calculatorButtons[event.target.getAttribute("data-click")](event);
+}
+
+function releaseButton(event) {
+    if (event.target.textContent === "⌫") {
+        event.target.classList.remove("backspace-active");
+        return;
+    }
+    if (!event) {
+        event.target.classList.remove("fx-active");
+    } else {
+        buttons.forEach(button => {
+            button.classList.remove("fx-active");
+        });
+    }
+}
+
+// keyboard support
+// worst solution, probably
+function pressButton(event) {
+    if (event.code === "Escape") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='clear']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Digit2" && event.shiftKey) {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='sqrt']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "KeyQ") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='pow']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Slash" || event.code === "NumpadDivide") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='divide']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Digit7" || event.code === "Numpad7") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='7']");
+        button.dispatchEvent(mouseDown);
+    }
+    if ((event.code === "Digit8" || event.code === "Numpad8")
+        && !event.shiftKey) {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='8']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Digit9" || event.code === "Numpad9") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='9']");
+        button.dispatchEvent(mouseDown);
+    }
+    if ((event.code === "Digit8" && event.shiftKey)
+        || event.code == "NumpadMultiply") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='multiply']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Digit4" || event.code === "Numpad4") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='4']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Digit5" || event.code === "Numpad5") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='5']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Digit6" || event.code === "Numpad6") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='6']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Minus" || event.code === "NumpadSubtract") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='subtract']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Digit1" || event.code === "Numpad1") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='1']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Digit2" || event.code === "Numpad2") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='2']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Digit3" || event.code === "Numpad3") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='3']");
+        button.dispatchEvent(mouseDown);
+    }
+    if ((event.code === "Equal" && event.shiftKey)
+        || event.code === "NumpadAdd") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='add']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Digit0" || event.code === "Numpad0") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='0']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Period" || event.code === "NumpadDecimal") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='decimal']");
+        button.dispatchEvent(mouseDown);
+    }
+    if (event.code === "Enter" || event.code === "NumpadEnter"
+        || event.code === "Equal") {
+        const mouseDown = new MouseEvent("mousedown");
+        const button = document.querySelector("[data-key='equals']");
+        button.dispatchEvent(mouseDown);
+    }
 }
 
 let firstNumber = null;
@@ -182,14 +284,12 @@ const display = document.querySelector(".display-content");
 display.textContent = 0;
 const buttons = document.querySelectorAll(".calculator button");
 buttons.forEach(button => {
-    button.addEventListener("mousedown", pressButton);
-    button.addEventListener("mouseup", removePressFX);
+    button.addEventListener("mousedown", clickButton);
+    button.addEventListener("mouseup", releaseButton);
     button.addEventListener("mouseover", addHoverFX);
     button.addEventListener("mouseout", removeHoverFX);
-    button.addEventListener("touchstart", pressButton);
-    button.addEventListener("touchend", removePressFX);
+    button.addEventListener("touchstart", clickButton);
+    button.addEventListener("touchend", releaseButton);
 });
-
-// todo
-// - limit display numbers max length
-// - add keyboard support
+document.addEventListener("keydown", pressButton);
+document.addEventListener("keyup", releaseButton);
